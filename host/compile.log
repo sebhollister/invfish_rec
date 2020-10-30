@@ -1,0 +1,1 @@
+/home/seb/ELL/build/bin/compile -imap model.ell -cfn Predict -cmn model --bitcode --target host -od host --fuseLinearOps True --optimizeReorderDataNodes True --globalValueAlignment 32 --swig --blas true --optimize true --parallelize true --vectorize
