@@ -15,8 +15,9 @@ print("Model output shape: [{0.rows}, {0.columns}, {0.channels}]".format(
 
 preprocessing_metadata = helpers.get_image_preprocessing_metadata(model_wrapper)
 
-sample_image = cv2.imread("coffeemug.jpg")
-sample_image = cv2.imread("goldfish.jpg")
+img_file = "goldfish.jpg"
+
+sample_image = cv2.imread(img_file)
 
 input_data = helpers.prepare_image_for_model(sample_image, input_shape.columns,
                                              input_shape.rows, preprocessing_metadata=preprocessing_metadata)
@@ -33,5 +34,7 @@ c_file.close()
 
 print("Category index: {}".format(prediction_index))
 print("Confidence: {}".format(predictions[prediction_index]))
-print("This object is a {} with confidence of {}".format(
-    list_of_categories[prediction_index], predictions[prediction_index]))
+print("This object ({}) is a {} with confidence of {}".format(
+    img_file, 
+    list_of_categories[prediction_index], 
+    predictions[prediction_index]))
