@@ -15,7 +15,7 @@ print("Model output shape: [{0.rows}, {0.columns}, {0.channels}]".format(
 
 preprocessing_metadata = helpers.get_image_preprocessing_metadata(model_wrapper)
 
-img_file = "goldfish.jpg"
+img_file = "clownfish.jpg"
 
 sample_image = cv2.imread(img_file)
 
