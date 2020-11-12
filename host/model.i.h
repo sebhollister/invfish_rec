@@ -33,7 +33,7 @@ typedef struct TensorShape
 //
 
 // Input 0 ('input') size: 12288
-// Output 0 ('output') size: 2
+// Output 0 ('output') size: 3
 void model_Predict(void* context, float* input, float* output);
 
 void model_Reset();
