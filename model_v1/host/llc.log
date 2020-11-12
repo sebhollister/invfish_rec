@@ -1,0 +1,1 @@
+/usr/lib/llvm-8/bin/llc host/model.opt.bc -o host/model.o -O3 -fp-contract=fast -filetype=obj -relocation-model=pic

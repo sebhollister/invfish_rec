@@ -22,12 +22,15 @@ from itertools import product
 
 # helper function that will find the ELL package if we need it.
 def find_ell():
+    #print(sys.path)
     try:
         import ell
     except:
-        ell_root = os.getenv("ELL_ROOT")
+        #ell_root = os.getenv("ELL_ROOT")
+        ell_root = "/home/seb/ELL/"
         if ell_root and os.path.isdir(ell_root):
             sys.path += [ os.path.join(ell_root, 'tools/utilities/pythonlibs') ]
+            
             import find_ell
             import ell
         else:

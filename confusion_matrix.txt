@@ -1,0 +1,8 @@
+	blue_tang	clownfish
+blue_tang	4	0	
+clownfish	0	4	
+
+
+
+Mean prediction time:			 50ms/frame
+Accuracy:			 8/8 = 100.0%%

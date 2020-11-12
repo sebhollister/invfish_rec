@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/seb/fish_rec/host/modelPYTHON_wrap.cxx" "/home/seb/fish_rec/host/build/CMakeFiles/_model.dir/modelPYTHON_wrap.cxx.o"
+  "/home/seb/invfish_rec/host/modelPYTHON_wrap.cxx" "/home/seb/invfish_rec/host/build/CMakeFiles/_model.dir/modelPYTHON_wrap.cxx.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -16,7 +16,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
-  "/home/seb/anaconda3/include/python3.7m"
+  "/home/seb/anaconda3/envs/cv/include/python3.6m"
   "/usr/include/x86_64-linux-gnu"
   )
 

@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,_model.so -o _model.so CMakeFiles/_model.dir/modelPYTHON_wrap.cxx.o ../model.o -Wl,-rpath,/home/seb/anaconda3/lib /home/seb/anaconda3/lib/libpython3.7m.so /usr/lib/x86_64-linux-gnu/libopenblas.so 
+/usr/bin/c++ -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,_model.so -o _model.so CMakeFiles/_model.dir/modelPYTHON_wrap.cxx.o ../model.o -Wl,-rpath,/home/seb/anaconda3/envs/cv/lib /home/seb/anaconda3/envs/cv/lib/libpython3.6m.so /usr/lib/x86_64-linux-gnu/libopenblas.so 

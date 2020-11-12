@@ -6515,6 +6515,38 @@ SwigDirector_ModelWrapper::SwigDirector_ModelWrapper(PyObject *self): ModelWrapp
 SwigDirector_ModelWrapper::~SwigDirector_ModelWrapper() {
 }
 
+void SwigDirector_ModelWrapper::OutputCallback(std::vector< float, std::allocator< float > > &output) {
+  swig::SwigVar_PyObject obj0;
+  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(&output), SWIGTYPE_p_std__vectorT_float_std__allocatorT_float_t_t,  0 );
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call ModelWrapper.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 0;
+  const char *const swig_method_name = "OutputCallback";
+  PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+  swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0, NULL);
+#else
+  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("OutputCallback");
+  swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name ,(PyObject *)obj0, NULL);
+#endif
+  if (!result) {
+    PyObject *error = PyErr_Occurred();
+    {
+      if (error != NULL) {
+        PyObject* ptype = nullptr;
+        PyObject* pvalue = nullptr;
+        PyObject* ptraceback = nullptr;
+        PyErr_Fetch(&ptype, &pvalue, &ptraceback);
+        PyErr_Restore(ptype, pvalue, ptraceback);
+        PyErr_Print();
+        Py_Exit(1);
+      }
+    }
+  }
+}
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -24436,6 +24468,29 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_model_GetSinkOutputSize(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  int32_t arg1 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int32_t result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  ecode1 = SWIG_AsVal_int(swig_obj[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "model_GetSinkOutputSize" "', argument " "1"" of type '" "int32_t""'");
+  } 
+  arg1 = static_cast< int32_t >(val1);
+  result = (int32_t)model_GetSinkOutputSize(arg1);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_model_GetNumNodes(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int32_t result;
@@ -24500,6 +24555,35 @@ SWIGINTERN PyObject *_wrap_model_GetOutputShape(PyObject *SWIGUNUSEDPARM(self), 
   }
   arg2 = reinterpret_cast< TensorShape * >(argp2);
   model_GetOutputShape(arg1,arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_model_GetSinkOutputShape(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  int32_t arg1 ;
+  TensorShape *arg2 = (TensorShape *) 0 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "model_GetSinkOutputShape", 2, 2, swig_obj)) SWIG_fail;
+  ecode1 = SWIG_AsVal_int(swig_obj[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "model_GetSinkOutputShape" "', argument " "1"" of type '" "int32_t""'");
+  } 
+  arg1 = static_cast< int32_t >(val1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_TensorShape, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "model_GetSinkOutputShape" "', argument " "2"" of type '" "TensorShape *""'"); 
+  }
+  arg2 = reinterpret_cast< TensorShape * >(argp2);
+  model_GetSinkOutputShape(arg1,arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -25115,6 +25199,263 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_ModelWrapper_GetSinkShape__SWIG_0(PyObject *SWIGUNUSEDPARM(self), Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  ModelWrapper *arg1 = (ModelWrapper *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  TensorShape result;
+  
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_ModelWrapper, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ModelWrapper_GetSinkShape" "', argument " "1"" of type '" "ModelWrapper const *""'"); 
+  }
+  arg1 = reinterpret_cast< ModelWrapper * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "ModelWrapper_GetSinkShape" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = ((ModelWrapper const *)arg1)->GetSinkShape(arg2);
+  resultobj = SWIG_NewPointerObj((new TensorShape(static_cast< const TensorShape& >(result))), SWIGTYPE_p_TensorShape, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ModelWrapper_GetSinkShape__SWIG_1(PyObject *SWIGUNUSEDPARM(self), Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  ModelWrapper *arg1 = (ModelWrapper *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TensorShape result;
+  
+  if ((nobjs < 1) || (nobjs > 1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_ModelWrapper, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ModelWrapper_GetSinkShape" "', argument " "1"" of type '" "ModelWrapper const *""'"); 
+  }
+  arg1 = reinterpret_cast< ModelWrapper * >(argp1);
+  result = ((ModelWrapper const *)arg1)->GetSinkShape();
+  resultobj = SWIG_NewPointerObj((new TensorShape(static_cast< const TensorShape& >(result))), SWIGTYPE_p_TensorShape, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ModelWrapper_GetSinkShape(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[3] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "ModelWrapper_GetSinkShape", 0, 2, argv))) SWIG_fail;
+  --argc;
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_ModelWrapper, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_ModelWrapper_GetSinkShape__SWIG_1(self, argc, argv);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_ModelWrapper, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_ModelWrapper_GetSinkShape__SWIG_0(self, argc, argv);
+      }
+    }
+  }
+  
+fail:
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'ModelWrapper_GetSinkShape'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    ModelWrapper::GetSinkShape(int) const\n"
+    "    ModelWrapper::GetSinkShape() const\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_ModelWrapper_GetSinkOutputSize__SWIG_0(PyObject *SWIGUNUSEDPARM(self), Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  ModelWrapper *arg1 = (ModelWrapper *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int result;
+  
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_ModelWrapper, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ModelWrapper_GetSinkOutputSize" "', argument " "1"" of type '" "ModelWrapper const *""'"); 
+  }
+  arg1 = reinterpret_cast< ModelWrapper * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "ModelWrapper_GetSinkOutputSize" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (int)((ModelWrapper const *)arg1)->GetSinkOutputSize(arg2);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ModelWrapper_GetSinkOutputSize__SWIG_1(PyObject *SWIGUNUSEDPARM(self), Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  ModelWrapper *arg1 = (ModelWrapper *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int result;
+  
+  if ((nobjs < 1) || (nobjs > 1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_ModelWrapper, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ModelWrapper_GetSinkOutputSize" "', argument " "1"" of type '" "ModelWrapper const *""'"); 
+  }
+  arg1 = reinterpret_cast< ModelWrapper * >(argp1);
+  result = (int)((ModelWrapper const *)arg1)->GetSinkOutputSize();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ModelWrapper_GetSinkOutputSize(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[3] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "ModelWrapper_GetSinkOutputSize", 0, 2, argv))) SWIG_fail;
+  --argc;
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_ModelWrapper, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_ModelWrapper_GetSinkOutputSize__SWIG_1(self, argc, argv);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_ModelWrapper, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_ModelWrapper_GetSinkOutputSize__SWIG_0(self, argc, argv);
+      }
+    }
+  }
+  
+fail:
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'ModelWrapper_GetSinkOutputSize'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    ModelWrapper::GetSinkOutputSize(int) const\n"
+    "    ModelWrapper::GetSinkOutputSize() const\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_ModelWrapper_Internal_OutputCallback(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  ModelWrapper *arg1 = (ModelWrapper *) 0 ;
+  float *arg2 = (float *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "ModelWrapper_Internal_OutputCallback", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_ModelWrapper, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ModelWrapper_Internal_OutputCallback" "', argument " "1"" of type '" "ModelWrapper *""'"); 
+  }
+  arg1 = reinterpret_cast< ModelWrapper * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_float, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ModelWrapper_Internal_OutputCallback" "', argument " "2"" of type '" "float *""'"); 
+  }
+  arg2 = reinterpret_cast< float * >(argp2);
+  (arg1)->Internal_OutputCallback(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ModelWrapper_OutputCallback(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  ModelWrapper *arg1 = (ModelWrapper *) 0 ;
+  std::vector< float,std::allocator< float > > *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  
+  if (!SWIG_Python_UnpackTuple(args, "ModelWrapper_OutputCallback", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_ModelWrapper, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ModelWrapper_OutputCallback" "', argument " "1"" of type '" "ModelWrapper *""'"); 
+  }
+  arg1 = reinterpret_cast< ModelWrapper * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__vectorT_float_std__allocatorT_float_t_t,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ModelWrapper_OutputCallback" "', argument " "2"" of type '" "std::vector< float,std::allocator< float > > &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ModelWrapper_OutputCallback" "', argument " "2"" of type '" "std::vector< float,std::allocator< float > > &""'"); 
+  }
+  arg2 = reinterpret_cast< std::vector< float,std::allocator< float > > * >(argp2);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==swig_obj[0]));
+  try {
+    if (upcall) {
+      (arg1)->ModelWrapper::OutputCallback(*arg2);
+    } else {
+      (arg1)->OutputCallback(*arg2);
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_ModelWrapper_Predict(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   ModelWrapper *arg1 = (ModelWrapper *) 0 ;
@@ -25184,6 +25525,33 @@ SWIGINTERN PyObject *ModelWrapper_swigregister(PyObject *SWIGUNUSEDPARM(self), P
 SWIGINTERN PyObject *ModelWrapper_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   return SWIG_Python_InitShadowInstance(args);
 }
+
+SWIGINTERN PyObject *_wrap_model_OutputCallback(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int res1 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "model_OutputCallback", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0],SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_OutputCallback" "', argument " "1"" of type '" "void *""'"); 
+  }
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_float, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "model_OutputCallback" "', argument " "2"" of type '" "float *""'"); 
+  }
+  arg2 = reinterpret_cast< float * >(argp2);
+  model_OutputCallback(arg1,arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
 
 SWIGINTERN PyObject *_wrap_get_default_input_shape(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
@@ -27407,6 +27775,14 @@ static PyMethodDef SwigMethods[] = {
 		"index: int32_t\n"
 		"\n"
 		""},
+	 { "model_GetSinkOutputSize", _wrap_model_GetSinkOutputSize, METH_O, "\n"
+		"model_GetSinkOutputSize(int32_t index) -> int32_t\n"
+		"\n"
+		"Parameters\n"
+		"----------\n"
+		"index: int32_t\n"
+		"\n"
+		""},
 	 { "model_GetNumNodes", _wrap_model_GetNumNodes, METH_NOARGS, "model_GetNumNodes() -> int32_t"},
 	 { "model_GetInputShape", _wrap_model_GetInputShape, METH_VARARGS, "\n"
 		"model_GetInputShape(int32_t index, TensorShape shape)\n"
@@ -27419,6 +27795,15 @@ static PyMethodDef SwigMethods[] = {
 		""},
 	 { "model_GetOutputShape", _wrap_model_GetOutputShape, METH_VARARGS, "\n"
 		"model_GetOutputShape(int32_t index, TensorShape shape)\n"
+		"\n"
+		"Parameters\n"
+		"----------\n"
+		"index: int32_t\n"
+		"shape: TensorShape *\n"
+		"\n"
+		""},
+	 { "model_GetSinkOutputShape", _wrap_model_GetSinkOutputShape, METH_VARARGS, "\n"
+		"model_GetSinkOutputShape(int32_t index, TensorShape shape)\n"
 		"\n"
 		"Parameters\n"
 		"----------\n"
@@ -27491,6 +27876,38 @@ static PyMethodDef SwigMethods[] = {
 		"name: char const *\n"
 		"\n"
 		""},
+	 { "ModelWrapper_GetSinkShape", _wrap_ModelWrapper_GetSinkShape, METH_VARARGS, "\n"
+		"ModelWrapper_GetSinkShape(ModelWrapper self, int index=0) -> TensorShape\n"
+		"\n"
+		"Parameters\n"
+		"----------\n"
+		"index: int\n"
+		"\n"
+		""},
+	 { "ModelWrapper_GetSinkOutputSize", _wrap_ModelWrapper_GetSinkOutputSize, METH_VARARGS, "\n"
+		"ModelWrapper_GetSinkOutputSize(ModelWrapper self, int index=0) -> int\n"
+		"\n"
+		"Parameters\n"
+		"----------\n"
+		"index: int\n"
+		"\n"
+		""},
+	 { "ModelWrapper_Internal_OutputCallback", _wrap_ModelWrapper_Internal_OutputCallback, METH_VARARGS, "\n"
+		"ModelWrapper_Internal_OutputCallback(ModelWrapper self, float * buffer)\n"
+		"\n"
+		"Parameters\n"
+		"----------\n"
+		"buffer: float *\n"
+		"\n"
+		""},
+	 { "ModelWrapper_OutputCallback", _wrap_ModelWrapper_OutputCallback, METH_VARARGS, "\n"
+		"ModelWrapper_OutputCallback(ModelWrapper self, FloatVector output)\n"
+		"\n"
+		"Parameters\n"
+		"----------\n"
+		"output: std::vector< float,std::allocator< float > > &\n"
+		"\n"
+		""},
 	 { "ModelWrapper_Predict", _wrap_ModelWrapper_Predict, METH_VARARGS, "\n"
 		"ModelWrapper_Predict(ModelWrapper self, FloatVector input) -> FloatVector\n"
 		"\n"
@@ -27502,6 +27919,15 @@ static PyMethodDef SwigMethods[] = {
 	 { "disown_ModelWrapper", _wrap_disown_ModelWrapper, METH_O, NULL},
 	 { "ModelWrapper_swigregister", ModelWrapper_swigregister, METH_O, NULL},
 	 { "ModelWrapper_swiginit", ModelWrapper_swiginit, METH_VARARGS, NULL},
+	 { "model_OutputCallback", _wrap_model_OutputCallback, METH_VARARGS, "\n"
+		"model_OutputCallback(void * context, float * output)\n"
+		"\n"
+		"Parameters\n"
+		"----------\n"
+		"context: void *\n"
+		"output: float *\n"
+		"\n"
+		""},
 	 { "get_default_input_shape", _wrap_get_default_input_shape, METH_NOARGS, "get_default_input_shape() -> TensorShape"},
 	 { "get_default_output_shape", _wrap_get_default_output_shape, METH_NOARGS, "get_default_output_shape() -> TensorShape"},
 	 { NULL, NULL, 0, NULL }

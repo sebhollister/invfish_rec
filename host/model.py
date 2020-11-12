@@ -3563,6 +3563,17 @@ def model_GetOutputSize(index: 'int32_t') -> "int32_t":
     """
     return _model.model_GetOutputSize(index)
 
+def model_GetSinkOutputSize(index: 'int32_t') -> "int32_t":
+    r"""
+    model_GetSinkOutputSize(int32_t index) -> int32_t
+
+    Parameters
+    ----------
+    index: int32_t
+
+    """
+    return _model.model_GetSinkOutputSize(index)
+
 def model_GetNumNodes() -> "int32_t":
     r"""model_GetNumNodes() -> int32_t"""
     return _model.model_GetNumNodes()
@@ -3590,6 +3601,18 @@ def model_GetOutputShape(index: 'int32_t', shape: 'TensorShape') -> "void":
 
     """
     return _model.model_GetOutputShape(index, shape)
+
+def model_GetSinkOutputShape(index: 'int32_t', shape: 'TensorShape') -> "void":
+    r"""
+    model_GetSinkOutputShape(int32_t index, TensorShape shape)
+
+    Parameters
+    ----------
+    index: int32_t
+    shape: TensorShape *
+
+    """
+    return _model.model_GetSinkOutputShape(index, shape)
 
 def model_GetMetadata(key: 'char *') -> "char *":
     r"""
@@ -3708,6 +3731,50 @@ class ModelWrapper(object):
         """
         return _model.ModelWrapper_GetMetadata(self, name)
 
+    def GetSinkShape(self, index: 'int'=0) -> "TensorShape":
+        r"""
+        GetSinkShape(ModelWrapper self, int index=0) -> TensorShape
+
+        Parameters
+        ----------
+        index: int
+
+        """
+        return _model.ModelWrapper_GetSinkShape(self, index)
+
+    def GetSinkOutputSize(self, index: 'int'=0) -> "int":
+        r"""
+        GetSinkOutputSize(ModelWrapper self, int index=0) -> int
+
+        Parameters
+        ----------
+        index: int
+
+        """
+        return _model.ModelWrapper_GetSinkOutputSize(self, index)
+
+    def Internal_OutputCallback(self, buffer: 'float *') -> "void":
+        r"""
+        Internal_OutputCallback(ModelWrapper self, float * buffer)
+
+        Parameters
+        ----------
+        buffer: float *
+
+        """
+        return _model.ModelWrapper_Internal_OutputCallback(self, buffer)
+
+    def OutputCallback(self, output: 'FloatVector') -> "void":
+        r"""
+        OutputCallback(ModelWrapper self, FloatVector output)
+
+        Parameters
+        ----------
+        output: std::vector< float,std::allocator< float > > &
+
+        """
+        return _model.ModelWrapper_OutputCallback(self, output)
+
     def Predict(self, input: 'FloatVector') -> "std::vector< float,std::allocator< float > > &":
         r"""
         Predict(ModelWrapper self, FloatVector input) -> FloatVector
@@ -3726,6 +3793,18 @@ class ModelWrapper(object):
 # Register ModelWrapper in _model:
 _model.ModelWrapper_swigregister(ModelWrapper)
 
+
+def model_OutputCallback(context: 'void *', output: 'float *') -> "void":
+    r"""
+    model_OutputCallback(void * context, float * output)
+
+    Parameters
+    ----------
+    context: void *
+    output: float *
+
+    """
+    return _model.model_OutputCallback(context, output)
 
 def get_default_input_shape() -> "TensorShape":
     r"""get_default_input_shape() -> TensorShape"""

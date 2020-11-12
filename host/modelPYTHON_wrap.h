@@ -20,6 +20,7 @@ class SwigDirector_ModelWrapper : public ModelWrapper, public Swig::Director {
 public:
     SwigDirector_ModelWrapper(PyObject *self);
     virtual ~SwigDirector_ModelWrapper();
+    virtual void OutputCallback(std::vector< float, std::allocator< float > > &output);
 
 /* Internal director utilities */
 public:
@@ -32,6 +33,27 @@ public:
     }
 private:
     mutable std::map<std::string, bool> swig_inner;
+
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+/* VTable implementation */
+    PyObject *swig_get_method(size_t method_index, const char *method_name) const {
+      PyObject *method = vtable[method_index];
+      if (!method) {
+        swig::SwigVar_PyObject name = SWIG_Python_str_FromChar(method_name);
+        method = PyObject_GetAttr(swig_get_self(), name);
+        if (!method) {
+          std::string msg = "Method in class ModelWrapper doesn't exist, undefined ";
+          msg += method_name;
+          Swig::DirectorMethodException::raise(msg.c_str());
+        }
+        vtable[method_index] = method;
+      }
+      return method;
+    }
+private:
+    mutable swig::SwigVar_PyObject vtable[1];
+#endif
+
 };
 
 

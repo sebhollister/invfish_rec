@@ -32,8 +32,8 @@ typedef struct TensorShape
 // Functions
 //
 
-// Input 0 ('input') size: 150528
-// Output 0 ('output') size: 1000
+// Input 0 ('input') size: 12288
+// Output 0 ('output') size: 2
 void model_Predict(void* context, float* input, float* output);
 
 void model_Reset();
@@ -42,11 +42,15 @@ int32_t model_GetInputSize(int32_t index);
 
 int32_t model_GetOutputSize(int32_t index);
 
+int32_t model_GetSinkOutputSize(int32_t index);
+
 int32_t model_GetNumNodes();
 
 void model_GetInputShape(int32_t index, TensorShape* shape);
 
 void model_GetOutputShape(int32_t index, TensorShape* shape);
+
+void model_GetSinkOutputShape(int32_t index, TensorShape* shape);
 
 char* model_GetMetadata(char* key);
 
@@ -152,6 +156,30 @@ public:
         return model_GetMetadata((char*)name);
     }
 
+    TensorShape GetSinkShape(int index = 0) const
+    {
+        TensorShape inputShape;
+        model_GetSinkOutputShape(index, &inputShape);
+        return inputShape;
+    }
+
+    int GetSinkOutputSize(int index = 0) const
+    {
+        return model_GetSinkOutputSize(index);
+    }
+
+    void Internal_OutputCallback(float* buffer)
+    {
+        int32_t size = GetSinkOutputSize(0);
+        _model_OutputCallback_output.assign(buffer, buffer + size);
+        OutputCallback(_model_OutputCallback_output);
+    }
+
+    virtual void OutputCallback(std::vector<float>& output)
+    {
+        // override this method to get the sink callback data as a vector
+    }
+
     std::vector<float>& Predict(std::vector<float>& input)
     {
         model_Predict(this, input.data(), _model_Predict_output.data());
@@ -161,6 +189,7 @@ public:
 
 private:
     std::vector<float> _model_Predict_output;
+    std::vector<float> _model_OutputCallback_output;
       
 };
 
@@ -170,6 +199,14 @@ private:
 
 extern "C"
 {
+    void model_OutputCallback(void* context, float* output)
+    {
+        if (context != nullptr)
+        {
+            auto predictor = reinterpret_cast<ModelWrapper*>(context);
+            predictor->Internal_OutputCallback(output);
+        }
+    }
 
 }
 
