@@ -15,8 +15,8 @@ print("Model output shape: [{0.rows}, {0.columns}, {0.channels}]".format(
 
 preprocessing_metadata = helpers.get_image_preprocessing_metadata(model_wrapper)
 
-img_file = "blue_tang_toy.jpg"
-#img_file = "clownfish.jpg"
+#img_file = "blue_tang_toy.jpg"
+img_file = "clownfish.jpg"
 #img_file = "clownfish_test.jpg"
 #img_file = "blue_tang_Test.jpg"
 #img_file = "bass_test.jpg"
