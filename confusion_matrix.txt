@@ -1,0 +1,9 @@
+	bass	blue_tang	clownfish
+bass	7	0	0	
+blue_tang	1	8	2	
+clownfish	0	0	6	
+
+
+
+Mean prediction time:			 36ms/frame
+Accuracy:			 21/24 = 87.5%%
