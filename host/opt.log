@@ -1,1 +1,0 @@
-/usr/lib/llvm-8/bin/opt host/model.bc -o host/model.opt.bc -O3 -fp-contract=fast

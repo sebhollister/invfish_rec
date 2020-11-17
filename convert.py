@@ -11,5 +11,5 @@ def convert_to_jpg(folder_name):
 
 if __name__ == "__main__":
     #folder_name = 'data/fish/blue_tang/*'
-    folder_name = 'data/fish/bass/*'
+    folder_name = 'data/fish/clownfish/*'
     convert_to_jpg(folder_name)
